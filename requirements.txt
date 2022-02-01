@@ -12,7 +12,6 @@ entrypoints==0.3
 executing==0.8.2
 flake8==4.0.1
 google-api-core==2.4.0
-google-api-python-client==2.36.0
 google-auth==2.4.1
 google-auth-httplib2==0.1.0
 googleapis-common-protos==1.54.0
