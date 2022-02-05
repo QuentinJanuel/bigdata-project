@@ -1,11 +1,28 @@
-# BIG DATA
+# Big Data
+# MyAnimeList
 
-## YouTube
+## Prerequisites
+- [nodejs](https://nodejs.org/en/)
+- [npm](https://www.npmjs.com/)
 
-## Requirements
- - [Python](https://www.python.org/)
- - [Jupyter](https://jupyter.org/)
+## Installation
+```bash
+npm i
+```
 
-## Authors
- - Quentin Januel
- - Sylvain Declercq
+## Launching
+```bash
+npm run start
+```
+
+## Prisma
+The database is generated using [Prisma](https://www.prisma.io/).
+Its structure is described in the file `prisma/schema.prisma`.
+Each time you modify the schema, you need to run
+```bash
+npm run update-db
+```
+You can explore the database in the browser using
+```bash
+npx prisma studio
+```

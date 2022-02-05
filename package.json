@@ -1,0 +1,29 @@
+{
+  "name": "bigdata",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "start": "tsc -p . && node ./build/index.js",
+    "update-db": "prisma format && prisma migrate dev -n new-mig && prisma generate"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/QuentinJanuel/bigdata-project.git"
+  },
+  "author": "Quentin Januel, Sylvain Leclercq",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/QuentinJanuel/bigdata-project/issues"
+  },
+  "homepage": "https://github.com/QuentinJanuel/bigdata-project#readme",
+  "devDependencies": {
+    "@types/node": "^17.0.14",
+    "prisma": "^3.9.1",
+    "typescript": "^4.5.5"
+  },
+  "dependencies": {
+    "@prisma/client": "^3.9.1"
+  }
+}
