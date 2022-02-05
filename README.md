@@ -6,11 +6,17 @@
 - [nodejs](https://nodejs.org/en/)
 - [npm](https://www.npmjs.com/)
 - [python](https://www.python.org/)
-### Python dependencies
+### Python
+Although not needed, it is recommanded to setup a virtual environment for the project:
+```bash
+python -m venv .venv
+```
+Install the python dependencies with the following command:
 ```bash
 pip install -r python-requirements.txt
 ```
-### Node dependencies
+### Node
+Install the node dependencies with the following command:
 ```bash
 npm i
 ```
