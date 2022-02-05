@@ -2,17 +2,32 @@
 # MyAnimeList
 
 ## Prerequisites
+### Programs
 - [nodejs](https://nodejs.org/en/)
 - [npm](https://www.npmjs.com/)
-
-## Installation
+- [python](https://www.python.org/)
+### Python dependencies
+```bash
+pip install -r python-requirements.txt
+```
+### Node dependencies
 ```bash
 npm i
 ```
+### Kaggle
+You must create an account on [Kaggle](https://www.kaggle.com/).
+Then on your user profile, click on **Create New API Token**. This will give you the file `kaggle.json` that you should place in the root directory of this project.
 
 ## Launching
 ```bash
 npm run start
+```
+
+## Setup
+### CSV
+In order to download the CSV files, simply run the following command:
+```bash
+python python/setup.py
 ```
 
 ## Prisma
