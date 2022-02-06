@@ -8,6 +8,7 @@ import {
     getIds,
     parseArray,
 } from "./csv/anime-list";
+import { parseNumber } from "./utils";
 
 const prisma = new PrismaClient();
 
@@ -15,6 +16,8 @@ const main = async function () {
     const max = 14478;
     await readCSV({
         file: "AnimeList.csv",
+        // max: 1,
+        // skip: 4384,
         onRow: async (row: AnimeListRow, index) => {
             console.log(`${ Math.round(index / max * 100) }% (${ index }/${ max })`);
             const aired = getAired(row);
@@ -37,7 +40,7 @@ const main = async function () {
                     rating: { connect: { id: await getId(prisma, row, "rating") } },
                     score: parseFloat(row.score),
                     scoredBy: parseInt(row.scored_by),
-                    rank: parseInt(row.rank),
+                    rank: parseNumber(row.rank),
                     popularity: parseInt(row.popularity),
                     members: parseInt(row.members),
                     favorites: parseInt(row.favorites),
@@ -63,7 +66,7 @@ const main = async function () {
 }
 
 main()
-.catch(console.error)
-.finally(async () => {
-    await prisma.$disconnect();
-});
+    .catch(console.error)
+    .finally(async () => {
+        await prisma.$disconnect();
+    });

@@ -25,7 +25,7 @@ model Anime {
   ratingId      Int
   score         Float
   scoredBy      Int
-  rank          Int
+  rank          Int?
   popularity    Int
   members       Int
   favorites     Int

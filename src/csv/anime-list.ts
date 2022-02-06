@@ -110,6 +110,8 @@ export const getIds = async function (
 export const parseArray = function (array: string):Array<string> {
     return JSON.parse(
         array
+            .replace(/\\/g, "\\\\")
+            .replace(/\n/g, "")
             .replace(/\"/g, "\\\"")
             .replace(/'/g, "\"")
     );
