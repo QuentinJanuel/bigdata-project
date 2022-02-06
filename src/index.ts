@@ -12,11 +12,11 @@ import {
 const prisma = new PrismaClient();
 
 const main = async function () {
+    const max = 14478;
     await readCSV({
         file: "AnimeList.csv",
-        maxRows: 3,
         onRow: async (row: AnimeListRow, index) => {
-            console.log(`Row ${ index }:`);
+            console.log(`${ Math.round(index / max * 100) }% (${ index }/${ max })`);
             const aired = getAired(row);
             await prisma.anime.create({
                 data: {
