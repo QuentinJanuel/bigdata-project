@@ -107,7 +107,17 @@ export const getIds = async function (
     return ids;
 }
 
-export const parseArray = function (array: string):Array<string> {
+export const parseJSON = function (json: string): any {
+    return JSON.parse(
+        json
+            .replace(/\\/g, "\\\\")
+            .replace(/\n/g, "")
+            .replace(/\"/g, "\\\"")
+            .replace(/'/g, "\"")
+    );
+}
+
+export const parseArray = function (array: string): Array<string> {
     return JSON.parse(
         array
             .replace(/\\/g, "\\\\")
@@ -115,4 +125,30 @@ export const parseArray = function (array: string):Array<string> {
             .replace(/\"/g, "\\\"")
             .replace(/'/g, "\"")
     );
+}
+
+export const parseNumber = (value: string): number | undefined => {
+    const parsed = parseInt(value);
+    if (isNaN(parsed))
+        return undefined;
+    return parsed;
+}
+
+interface Related {
+    name: string;
+    anime_id: number;
+}
+
+export const getRelated = function (row: Row): Array<Related> {
+    const result: Array<Related> = [];
+    const related = parseJSON(row.related);
+    for (const name of Object.keys(related)) {
+        for (const { mal_id: anime_id } of related[name]) {
+            result.push({
+                name,
+                anime_id,
+            });
+        }
+    }
+    return result;
 }

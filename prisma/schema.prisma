@@ -32,14 +32,14 @@ model Anime {
   background    String
   premiered     String
   broadcast     String
-  related       Related[]      @relation(name: "related")
-  relations     Related[]      @relation(name: "relation")
   producers     Producer[]
   licensors     Licensor[]
   studios       Studio[]
   genres        Genre[]
   openings      Opening[]
   endings       Ending[]
+  linkTo        Link[]         @relation(name: "to")
+  linkFrom      Link[]         @relation(name: "from")
 }
 
 model TitleSynonym {
@@ -67,13 +67,20 @@ model Rating {
   anime Anime[]
 }
 
-model Related {
-  id     Int    @id @default(autoincrement())
-  name   String
-  from   Anime  @relation(fields: [fromId], references: [id], name: "related")
-  fromId Int
-  to     Anime  @relation(fields: [toId], references: [id], name: "relation")
-  toId   Int
+model Relation {
+  id    Int    @id @default(autoincrement())
+  name  String
+  links Link[]
+}
+
+model Link {
+  id         Int       @id @default(autoincrement())
+  from       Anime     @relation(fields: [fromId], references: [id], name: "from")
+  fromId     Int
+  to         Anime     @relation(fields: [toId], references: [id], name: "to")
+  toId       Int
+  relation   Relation? @relation(fields: [relationId], references: [id])
+  relationId Int?
 }
 
 model Producer {
