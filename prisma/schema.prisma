@@ -7,7 +7,109 @@ datasource db {
   url      = "file:./dev.db"
 }
 
-model User {
-  id   Int    @id @default(autoincrement())
-  name String
+model Anime {
+  id            Int            @id
+  title         String
+  titleEnglish  String
+  titleSynonyms TitleSynonym[]
+  image         String
+  type          Type           @relation(fields: [typeId], references: [id])
+  typeId        Int
+  source        Source         @relation(fields: [sourceId], references: [id])
+  sourceId      Int
+  episodes      Int
+  airingFrom    DateTime?
+  airingTo      DateTime?
+  duration      Int?
+  rating        Rating         @relation(fields: [ratingId], references: [id])
+  ratingId      Int
+  score         Float
+  scoredBy      Int
+  rank          Int
+  popularity    Int
+  members       Int
+  favorites     Int
+  background    String
+  premiered     String
+  broadcast     String
+  related       Related[]      @relation(name: "related")
+  relations     Related[]      @relation(name: "relation")
+  producers     Producer[]
+  licensors     Licensor[]
+  studios       Studio[]
+  genres        Genre[]
+  openings      Opening[]
+  endings       Ending[]
+}
+
+model TitleSynonym {
+  id      Int    @id @default(autoincrement())
+  name    String
+  anime   Anime  @relation(fields: [animeId], references: [id])
+  animeId Int
+}
+
+model Type {
+  id    Int     @id @default(autoincrement())
+  name  String
+  anime Anime[]
+}
+
+model Source {
+  id    Int     @id @default(autoincrement())
+  name  String
+  anime Anime[]
+}
+
+model Rating {
+  id    Int     @id @default(autoincrement())
+  name  String
+  anime Anime[]
+}
+
+model Related {
+  id     Int    @id @default(autoincrement())
+  name   String
+  from   Anime  @relation(fields: [fromId], references: [id], name: "related")
+  fromId Int
+  to     Anime  @relation(fields: [toId], references: [id], name: "relation")
+  toId   Int
+}
+
+model Producer {
+  id     Int     @id @default(autoincrement())
+  name   String
+  animes Anime[]
+}
+
+model Licensor {
+  id     Int     @id @default(autoincrement())
+  name   String
+  animes Anime[]
+}
+
+model Studio {
+  id     Int     @id @default(autoincrement())
+  name   String
+  animes Anime[]
+}
+
+model Genre {
+  id     Int     @id @default(autoincrement())
+  name   String
+  animes Anime[]
+}
+
+model Opening {
+  id      Int    @id @default(autoincrement())
+  name    String
+  anime   Anime  @relation(fields: [animeId], references: [id])
+  animeId Int
+}
+
+model Ending {
+  id      Int    @id @default(autoincrement())
+  name    String
+  anime   Anime  @relation(fields: [animeId], references: [id])
+  animeId Int
 }

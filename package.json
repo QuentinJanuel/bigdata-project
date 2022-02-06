@@ -6,7 +6,7 @@
   "private": true,
   "scripts": {
     "start": "tsc -p . && node ./build/index.js",
-    "update-db": "prisma format && prisma migrate dev -n new-mig && prisma generate"
+    "update-db": "prisma format && prisma db push && prisma generate"
   },
   "repository": {
     "type": "git",
