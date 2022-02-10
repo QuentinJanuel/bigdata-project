@@ -131,8 +131,8 @@ model User {
   joinedAt  DateTime?
   lastLogin DateTime?
   location  String
-  rewatchs  Int
-  episodes  Int
+  rewatchs  Int?
+  episodes  Int?
 }
 
 model Gender {

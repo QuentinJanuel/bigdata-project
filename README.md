@@ -47,3 +47,6 @@ You can explore the database in the browser using
 ```bash
 npx prisma studio
 ```
+
+Edengarde,3303323,
+DXJIN,4053497,
