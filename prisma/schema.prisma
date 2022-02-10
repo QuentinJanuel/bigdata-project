@@ -120,3 +120,23 @@ model Ending {
   anime   Anime  @relation(fields: [animeId], references: [id])
   animeId Int
 }
+
+model User {
+  id        Int       @id
+  name      String
+  daysSpent Float
+  gender    Gender    @relation(fields: [genderId], references: [id])
+  genderId  Int
+  birthday  DateTime?
+  joinedAt  DateTime?
+  lastLogin DateTime?
+  location  String
+  rewatchs  Int
+  episodes  Int
+}
+
+model Gender {
+  id   Int    @id @default(autoincrement())
+  name String
+  user User[]
+}
