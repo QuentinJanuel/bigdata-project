@@ -28,6 +28,6 @@ def download(file):
     rmtree(TEMP_DIR)
 
 
-download("AnimeList.csv")
-download("UserList.csv")
+download("anime_cleaned.csv")
+download("users_cleaned.csv")
 download("animelists_cleaned.csv")

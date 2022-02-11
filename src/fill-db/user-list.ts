@@ -23,7 +23,7 @@ const getGenderName = function (gender: string): string {
 
 export const fillFromCSV = async function (prisma: PrismaClient) {
     await readCSV({
-        file: "UserList.csv",
+        file: "users_cleaned.csv",
         onRow: async (row: Row, index, max) => {
             console.log(`${ Math.floor(index / max * 100) }% (${ index }/${ max })`);
             const genderName = getGenderName(row.gender);
