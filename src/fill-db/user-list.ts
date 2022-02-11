@@ -32,8 +32,10 @@ export const fillFromCSV = async function (prisma: PrismaClient) {
             }) ?? await prisma.gender.create({
                 data: { name: genderName },
             });
-            await prisma.user.create({
-                data: {
+            await prisma.user.upsert({
+                update: {},
+                where: { id: parseInt(row.user_id) },
+                create: {
                     id: parseInt(row.user_id),
                     name: row.username,
                     daysSpent: parseFloat(row.user_days_spent_watching),

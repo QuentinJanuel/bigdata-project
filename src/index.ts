@@ -1,6 +1,5 @@
 import { PrismaClient } from "@prisma/client";
 import { fillDatabase } from "./fill-db";
-import { readCSV } from "./csv";
 
 const prisma = new PrismaClient();
 

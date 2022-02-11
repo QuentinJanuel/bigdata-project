@@ -40,6 +40,7 @@ model Anime {
   endings       Ending[]
   linkTo        Link[]         @relation(name: "to")
   linkFrom      Link[]         @relation(name: "from")
+  reviews       Review[]
 }
 
 model TitleSynonym {
@@ -133,10 +134,34 @@ model User {
   location  String
   rewatchs  Int?
   episodes  Int?
+  reviews   Review[]
 }
 
 model Gender {
   id   Int    @id @default(autoincrement())
   name String
   user User[]
+}
+
+model Review {
+  id                Int       @id @default(autoincrement())
+  user              User      @relation(fields: [userId], references: [id])
+  userId            Int
+  anime             Anime     @relation(fields: [animeId], references: [id])
+  animeId           Int
+  watchedEpisodes   Int
+  start             DateTime?
+  end               DateTime?
+  score             Float?
+  status            Status    @relation(fields: [statusId], references: [id])
+  statusId          Int
+  rewatching        Boolean
+  rewatchedEpisodes Int
+  updatedAt         DateTime
+}
+
+model Status {
+  id     Int      @id
+  name   String
+  review Review[]
 }
