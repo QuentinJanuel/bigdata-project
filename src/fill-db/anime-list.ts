@@ -64,7 +64,7 @@ const fillWithoutRelations = async function (prisma: PrismaClient) {
 
 const fillRelations = async function (prisma: PrismaClient) {
     await readCSV({
-        file: "AnimeList.csv",
+        file: "anime_cleaned.csv",
         onRow: async (row: Row, index, max) => {
             console.log(`${ Math.round(index / max * 100) }% (${ index }/${ max })`);
             const fromId = parseInt(row.anime_id);
