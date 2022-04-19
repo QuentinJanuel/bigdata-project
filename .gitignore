@@ -4,5 +4,5 @@
 /.venv
 /python/temp
 /kaggle.json
-/prisma/dev.db
-/prisma/dev.db-journal
+/prisma/*
+!/prisma/schema.prisma
