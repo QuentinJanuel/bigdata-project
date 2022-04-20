@@ -74,7 +74,7 @@ const fillRelations = async function (prisma: PrismaClient) {
                     where: { id: toId },
                 });
                 if (anime === null)
-                    continue;
+                    continue;   
                 const relation = await prisma.relation.findFirst({
                     where: { name },
                 }) ?? await prisma.relation.create({
