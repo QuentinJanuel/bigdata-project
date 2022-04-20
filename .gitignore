@@ -4,5 +4,4 @@
 /.venv
 /python/temp
 /kaggle.json
-/prisma/*
-!/prisma/schema.prisma
+

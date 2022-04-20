@@ -87,7 +87,7 @@ const getUserId = async function (
 export const fillFromCSV = async function (prisma: PrismaClient) {
     await readCSV({
         file: "animelists_cleaned.csv",
-        max: 1000,
+        max: 10000,
         onRow: async (row: Row, index, max) => {
             console.log(`${ Math.floor(index / max * 100) }% (${ index }/${ max })`);
             const userId = await getUserId(prisma, row.username);
