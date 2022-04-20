@@ -1,10 +1,12 @@
 import { PrismaClient } from "@prisma/client";
-import { fillDatabase } from "./fill-db";
+import { gen } from "./gen";
+// import { fillDatabase } from "./fill-db";
 
 const prisma = new PrismaClient();
 
 const main = async function () {
-    await fillDatabase(prisma);
+    // await fillDatabase(prisma);
+    await gen(prisma);
     console.log("Done");
 }
 
