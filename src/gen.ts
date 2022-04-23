@@ -3,49 +3,57 @@ import path from "path";
 import fs from "fs";
 
 export const gen = async function (prisma: PrismaClient) {
-    const genres = await prisma.genre.findMany({
-        select: { name: true },
-    });
+    // const genres = await prisma.genre.findMany({
+    //     select: { name: true },
+    // });
     const reviews = await prisma.review.findMany({
         select: {
             score: true,
-            user: {
-                select: {
-                    episodes: true,
-                    gender: {
-                        select: {
-                            id: true,
-                        },
-                    },
-                },
-            },
-            anime: {
-                select: {
-                    score: true,
-                    scoredBy: true,
-                    genres: {
-                        select: {
-                            name: true,
-                        },
-                    },
-                },
-            },
+            userId: true,
+            animeId: true,
+            // user: {
+            //     select: {
+            //         episodes: true,
+            //         gender: {
+            //             select: {
+            //                 id: true,
+            //             },
+            //         },
+            //     },
+            // },
+            // anime: {
+            //     select: {
+            //         id: true,
+            //         score: true,
+            //         scoredBy: true,
+            //         genres: {
+            //             select: {
+            //                 name: true,
+            //             },
+            //         },
+            //     },
+            // },
         },
     });
     const total = [];
-    for (const { score, anime, user } of reviews) {
-        const obj: {
-            [key: string]: any;
-        } = {
-            score,
-            globalScore: anime.score,
-            scoredBy: anime.scoredBy,
-            gender: user.gender.id,
-            episodes: user.episodes,
-        }
-        for (const { name: genre } of genres) {
-            obj[genre] = anime.genres.some(({ name }) => name === genre);
-        }
+    for (const { score, /*anime, user*/ userId, animeId } of reviews) {
+        // const obj: {
+        //     [key: string]: any;
+        // } = {
+        //     score,
+        //     globalScore: anime.score,
+        //     scoredBy: anime.scoredBy,
+        //     gender: user.gender.id,
+        //     episodes: user.episodes,
+        // }
+        const obj: { [key: string]: any } = {
+            user: userId,
+            product: animeId,
+            rating: score,
+        };
+        // for (const { name: genre } of genres) {
+        //     obj[genre] = anime.genres.some(({ name }) => name === genre);
+        // }
         total.push(obj);
     }
     let csv = "";
@@ -57,6 +65,6 @@ export const gen = async function (prisma: PrismaClient) {
             .join(",");
         csv += "\n";
     }
-    const filename = path.join(__dirname, "..", "csv", "data.csv");
+    const filename = path.join(__dirname, "..", "csv", "data2.csv");
     await fs.promises.writeFile(filename, csv);
 }
