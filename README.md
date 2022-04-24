@@ -24,11 +24,6 @@ npm i
 You must create an account on [Kaggle](https://www.kaggle.com/).
 Then on your user profile, click on **Create New API Token**. This will give you the file `kaggle.json` that you should place in the root directory of this project.
 
-## Launching
-```bash
-npm run start
-```
-
 ## Setup
 ### CSV
 In order to download the CSV files, simply run the following command:
@@ -43,7 +38,17 @@ Each time you modify the schema, you need to run
 ```bash
 npm run update-db
 ```
+You must also run it once to create the database.
+
 You can explore the database in the browser using
 ```bash
 npx prisma studio
 ```
+
+## Launching
+First run this command to generate the relational database and the training data from it:
+```bash
+npm run start
+```
+
+Then you can use the Jupyter notebooks located in the python folder!
